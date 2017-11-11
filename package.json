@@ -1,0 +1,12 @@
+{
+  "name": "simDataProducer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Marc Teichtahl <teichtah@amazon.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mosca": "^2.7.0",
+    "n-readlines": "^0.2.8",
+    "split": "^1.0.1"
+  }
+}
