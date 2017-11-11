@@ -188,7 +188,7 @@
               "wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo\n",
               "curl -sL https://rpm.nodesource.com/setup_7.x | bash -\n",
               "yum -y install nodejs yarn git\n",
-              "npm install -g forever",
+              "npm install -g forever\n",
               "git clone https://github.com/mteichtahl/simDataProducer.git\n",
               "cd simDataProducer\n",
               "yarn install\n",
