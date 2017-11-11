@@ -192,7 +192,7 @@
               "git clone https://github.com/mteichtahl/simDataProducer.git\n",
               "cd simDataProducer\n",
               "yarn install\n",
-              "forever start forever.json\n"
+              "forever start forever.json"
             ]]
           }
         }
