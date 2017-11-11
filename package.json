@@ -8,5 +8,8 @@
     "mosca": "^2.7.0",
     "n-readlines": "^0.2.8",
     "split": "^1.0.1"
+  },
+  "scripts": {
+    "run": "node ./producer.js"
   }
 }
