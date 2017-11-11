@@ -1,0 +1,8 @@
+{
+	// Comments are supported
+    "uid": "simDataProducer",
+    "append": true,
+    "watch": true,
+    "script": "producer.js",
+    "sourceDir": "/simDataProducer"
+}
