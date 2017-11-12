@@ -12,7 +12,7 @@ var mosca = require('mosca');
 var fs = require('fs');
 var stream = require('stream');
 var lineByLine = require('n-readlines');
-var countLinesInFile = require('./countLinesInFile')
+var countLinesInFile = require('./lib/countLinesInFile')
 
 
 var dataFilename = "data.csv"

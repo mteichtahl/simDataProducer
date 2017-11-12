@@ -15,7 +15,7 @@
       "Type": "String",
       "MinLength": "3",
       "MaxLength": "32",
-      "Default": "teichtahlAWS-own",
+      "Default": "<YOUR_KEY_PAIR_HERE>",
       "AllowedPattern": "[\\x20-\\x7E]*",
       "ConstraintDescription": "can contain only ASCII characters."
     },
@@ -188,11 +188,11 @@
               "wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo\n",
               "curl -sL https://rpm.nodesource.com/setup_7.x | bash -\n",
               "yum -y install nodejs yarn git\n",
-              "npm install -g forever",
+              "npm install -g forever\n",
               "git clone https://github.com/mteichtahl/simDataProducer.git\n",
               "cd simDataProducer\n",
               "yarn install\n",
-              "forever start forever.json"
+              "forever start forever.json\n"
             ]]
           }
         }
@@ -247,6 +247,29 @@
       "Export": {
         "Name": {
           "Fn::Sub": "${AWS::StackName}-EC2-PublicIp"
+        }
+      }
+    },
+  
+  "Subnet": {
+      "Value": {
+        "Ref": "Subnet"
+      },
+      "Description": "Instance subnet",
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-EC2-Subnet"
+        }
+      }
+    },
+    "SecurityGroup": {
+      "Value": {
+        "Ref": "InstanceSecurityGroup"
+      },
+      "Description": "Instance SecurityGroup",
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-EC2-InstanceSecurityGroup"
         }
       }
     }

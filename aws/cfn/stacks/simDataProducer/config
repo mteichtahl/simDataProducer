@@ -1,3 +1,4 @@
 STACK_NAME=simDataProducer
 S3_BUCKET=s3://teichtah-lambda-functions
 REGION=ap-southeast-2
+

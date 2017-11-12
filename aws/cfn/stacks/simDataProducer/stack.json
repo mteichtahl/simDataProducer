@@ -15,7 +15,7 @@
       "Type": "String",
       "MinLength": "3",
       "MaxLength": "32",
-      "Default": "teichtahlAWS-own",
+      "Default": "<YOUR_KEY_PAIR_HERE>",
       "AllowedPattern": "[\\x20-\\x7E]*",
       "ConstraintDescription": "can contain only ASCII characters."
     },
@@ -247,6 +247,29 @@
       "Export": {
         "Name": {
           "Fn::Sub": "${AWS::StackName}-EC2-PublicIp"
+        }
+      }
+    },
+  
+  "Subnet": {
+      "Value": {
+        "Ref": "Subnet"
+      },
+      "Description": "Instance subnet",
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-EC2-Subnet"
+        }
+      }
+    },
+    "SecurityGroup": {
+      "Value": {
+        "Ref": "InstanceSecurityGroup"
+      },
+      "Description": "Instance SecurityGroup",
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-EC2-InstanceSecurityGroup"
         }
       }
     }
