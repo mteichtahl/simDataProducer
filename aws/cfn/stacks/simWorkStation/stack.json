@@ -91,12 +91,15 @@
         "UserData": {
           "Fn::Base64": {
             "Fn::Join": ["", [
-              "#!/bin/bash\n",
-              "yum -y update\n",
-              "wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo\n",
-              "curl -sL https://rpm.nodesource.com/setup_7.x | bash -\n",
-              "yum -y install nodejs yarn git\n",
-              "npm install -g forever mqtt\n"
+                "#!/bin/bash\n",
+                "yum -y update\n",
+                "wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo\n",
+                "curl -sL https://rpm.nodesource.com/setup_7.x | bash -\n",
+                "yum -y install nodejs yarn git\n",
+                "npm install -g forever mqtt\n",
+                "git clone https://github.com/mteichtahl/simDataConsumer.git\n",
+                "cd simDataConsumer\n",
+                "yarn install\n"
             ]]
           }
         }
