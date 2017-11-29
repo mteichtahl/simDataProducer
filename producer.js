@@ -13,7 +13,7 @@ var stream = require('stream');
 var lineByLine = require('n-readlines');
 var countLinesInFile = require('./lib/countLinesInFile')
 
-var dataFilename = "data.csv"
+var dataFilename = "/home/nvidia/projects/simDataProducer/data.csv"
 var instream = fs.createReadStream(dataFilename);
 var numberOfLines = 0 ;
 var INTERVAL = 1000/FREQ                // ms
@@ -27,12 +27,17 @@ var settings = {
     backend: {
         pubsubCollection: 'ascoltatori',
         redis: {}
+    },
+    http: {
+	port: 1884,
+	bundle: true,
+	static: './'
     }
 }
 
 var publishClientID = 'IoT_GGD'; // ID of treadstone client
-var lineCounter = 1;
 var liner = new lineByLine(dataFilename);
+var lineNumber = 0;
 
 var server = new mosca.Server(settings);
 
@@ -62,11 +67,11 @@ server.on('clientDisconnected', function(client) {
     if (DEBUG) {
         console.log('client disconnected:', client.id);
     }
+
+    global.gc();
 }); 
 
 function clientConnected(client) {
-    global.gc();
-    
     // only start the publish timer if the client is treadstone
     if (client.id.trim().startsWith(publishClientID.trim())) {
 	console.log('TS client connected');
@@ -74,15 +79,15 @@ function clientConnected(client) {
     }
     else {
 	if (DEBUG) {
-	    console.log('non TS client connected');
+	    //console.log('non TS client connected');
 	}
+	return;
     }
     
-    var lineNumber = 0 ;
-        
     var interval = setInterval(function() {
         var line = liner.next();  
         var jsonLine = JSON.parse(line).data
+
 	line = null;
 	
         var message = {
@@ -92,13 +97,13 @@ function clientConnected(client) {
             retain: false // or true
         };
 
-
         server.publish(message, function() {
+	    console.log("published");
 	    message = null;
 	    jsonLine = null;
         });
 
-        if (numberOfLines-lineNumber > 0) {
+        if ((numberOfLines - lineNumber) > 0) {
             lineNumber++;
         }
 	else {
